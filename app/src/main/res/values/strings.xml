@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">QR Scanner</string>
+    <string name="titulo">Resultado</string>
+    <string name="expediente">Expediente</string>
+    <string name="nombre">Nombre</string>
+    <string name="apPaterno">Apellido Paterno</string>
+    <string name="apMaterno">Apellido Materno</string>
+    <string name="curp">CURP</string>
+    <string name="rfc">RFC</string>
+    <string name="licencia">Licencia</string>
+    <string name="dtFin">Fin</string>
+    <string name="dtInicio">Inicio</string>
+    <string name="tsImpresion">Impresion</string>
+    <string name="cFolio">Folio</string>
+    <string name="cLicencia">Licencia</string>
+    <string name="alerta">Alerta</string>
+    <string name="scroll" />
+</resources>
