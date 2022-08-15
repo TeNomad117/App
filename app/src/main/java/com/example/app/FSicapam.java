@@ -14,21 +14,8 @@ public class FSicapam extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fsicapam);
-
-        webView = findViewById(R.id.webview);
-
-        Bundle reciveData = getIntent().getExtras();
-        String Uri = reciveData.getString("QRContent");
-
-
-        Intent httpIntent = new Intent(Intent.ACTION_VIEW);
-        //httpIntent.setData(Uri.parse(QRContent));
-        startActivity(httpIntent);
-
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
     }
-
-
-
 
 }

@@ -21,17 +21,6 @@
                 android:layout_height="110dp"
                 app:srcCompat="@drawable/eescudo" />
 
-            <androidx.appcompat.widget.Toolbar
-                android:id="@+id/toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="#9F2241"
-                android:minHeight="?attr/actionBarSize"
-                android:theme="?attr/actionBarTheme"
-                app:title="SIGEM"
-                android:textColor="#ffffff"
-                />
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"

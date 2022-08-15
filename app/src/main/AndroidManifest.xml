@@ -21,14 +21,21 @@
         <activity
             android:name=".FormPrueba"
             android:exported="false"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+            android:label="Acerca de:"
+            android:parentActivityName=".MainActivity"
+            />
         <activity
             android:name=".FSicapam"
-            android:exported="false" />
+            android:exported="false"
+            android:label="SICAPAM"
+            android:parentActivityName=".MainActivity"
+            />
         <activity
             android:name=".FSigem"
             android:exported="false"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+            android:label="SIGEM"
+            android:parentActivityName=".MainActivity"
+            />
         <activity
             android:name=".MainActivity"
             android:exported="true"

@@ -38,6 +38,7 @@ public class FSigem extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fsigem);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 

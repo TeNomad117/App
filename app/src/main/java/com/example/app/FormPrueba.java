@@ -9,18 +9,12 @@ import android.widget.Button;
 
 public class FormPrueba extends AppCompatActivity {
 
-    Button button2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_form_prueba);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        button2 = findViewById(R.id.button2);
-    }
-    //Metodo boton regresar
-    public void onClick(View view){
-        Intent r = new Intent(this, MainActivity.class);
-        startActivity(r);
     }
 }
