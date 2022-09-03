@@ -15,4 +15,18 @@
     <string name="cLicencia">Licencia</string>
     <string name="alerta">Alerta</string>
     <string name="scroll" />
+
+    <string name="INUMSOLICITUD">Solicitud</string>
+    <string name="IEJERCICIO">Ejercicio</string>
+    <string name="COBSES">Documento</string>
+    <string name="CCADENAFIRMADO">Firma Electronica</string>
+    <string name="CNOMEMBARCACION">Embarcacion</string>
+    <string name="ICVEVEHICULO">ID</string>
+    <string name="CMODULO">RegistroSDist</string>
+    <string name="COFICINA">Oficina</string>
+    <string name="DTREGISTRO">Fecha de Emision</string>
+    <string name="CHOLOGRAMA">Señal</string>
+    <string name="CPERMISO">Servicio</string>
+    <string name="ID">ID</string>
+
 </resources>

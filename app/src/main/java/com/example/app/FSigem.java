@@ -2,6 +2,7 @@ package com.example.app;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -39,9 +40,7 @@ public class FSigem extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fsigem);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
 
         imageUser = findViewById(R.id.imageUser);
         imageFirma = findViewById(R.id.imageFirma);
@@ -116,19 +115,4 @@ public class FSigem extends AppCompatActivity {
         tLugar.setText("Lugar : " + reciveData.getString("lu"));
 
     }
-//    @Override
-//    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-//        switch (item.getItemId()){
-//            case android.R.id.home:
-//                finish();
-//                return true;
-//        }
-//        return super.onOptionsItemSelected(item);
-//    }
-
-//    //Metodo boton regresar
-//    public void onClick(View view){
-//        Intent r = new Intent(this, MainActivity.class);
-//        startActivity(r);
-//    }
 }
