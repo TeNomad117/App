@@ -16,26 +16,26 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.App"
-        >
+        android:theme="@style/Theme.App" >
+        <activity
+            android:name=".startOf"
+            android:exported="false"
+            android:parentActivityName=".MainActivity"/>
         <activity
             android:name=".FormPrueba"
             android:exported="false"
             android:label="Acerca de:"
-            android:parentActivityName=".MainActivity"
-            />
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".FSicapam"
             android:exported="false"
             android:label="SICAPAM"
-            android:parentActivityName=".MainActivity"
-            />
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".FSigem"
             android:exported="false"
             android:label="SIGEM"
-            android:parentActivityName=".MainActivity"
-            />
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".MainActivity"
             android:exported="true"

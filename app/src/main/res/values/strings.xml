@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">QR Scanner</string>
+    <string name="app_name">QR Marina</string>
     <string name="titulo">Resultado</string>
     <string name="expediente">Expediente</string>
     <string name="nombre">Nombre</string>

@@ -6,9 +6,6 @@ import androidx.appcompat.app.AppCompatDelegate;
 
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.res.Configuration;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
@@ -18,10 +15,9 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.ViewFlipper;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -32,7 +28,6 @@ import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 import com.shashank.sony.fancytoastlib.FancyToast;
@@ -41,7 +36,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.nio.Buffer;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -51,6 +45,8 @@ public class MainActivity extends AppCompatActivity {
     Button btn_Scan;
     Button button;
     ImageView sinConexion;
+    ViewFlipper v_flipper;
+
 
     private RequestQueue myQueue;
     private static String _jwt;
@@ -63,6 +59,19 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //carrucel imagenes
+        int images[] = {R.drawable.b1,R.drawable.b2,R.drawable.b3,R.drawable.b4,R.drawable.b5,
+        R.drawable.b6,R.drawable.b7,R.drawable.b8,R.drawable.b9,R.drawable.b10,};
+
+        v_flipper = findViewById(R.id.v_flipper);
+
+        for(int image: images){
+            flipperImages(image);
+        }
+
+        //carrucel imagenes
+
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
 
         myQueue = Volley.newRequestQueue(this);
@@ -70,7 +79,6 @@ public class MainActivity extends AppCompatActivity {
         btn_Scan = findViewById(R.id.btn_scan); //boton escaneo
         sinConexion = findViewById(R.id.imagenSinConexion); //imagen para identificar la conexion
         sinConexion.setVisibility(View.INVISIBLE); //se oculta la imagen
-        button = findViewById(R.id.button);
 
         //Boton flotante acerca de:
         FloatingActionButton fab = findViewById(R.id.fab);
@@ -135,6 +143,7 @@ public class MainActivity extends AppCompatActivity {
             Intent httpIntent = new Intent(Intent.ACTION_VIEW);
             httpIntent.setData(Uri.parse(uri));
             startActivity(httpIntent);
+            overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
 
             /**
              * Rutina de
@@ -177,10 +186,6 @@ public class MainActivity extends AppCompatActivity {
                 headers.put
             }*/
            // };
-
-
-
-
             /**
              *
              */
@@ -317,6 +322,7 @@ public class MainActivity extends AppCompatActivity {
                                 Intent intent = new Intent(MainActivity.this, FSigem.class);
                                 intent.putExtras(SendData);
                                 startActivity(intent);
+                                overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
                                 //Envio de datos e inicio de formulario
 
                             } catch (JSONException e) {
@@ -412,6 +418,7 @@ public class MainActivity extends AppCompatActivity {
                             Intent intent = new Intent(MainActivity.this, FSicapam.class);
                             intent.putExtras(SendData);
                             startActivity(intent);
+                            overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
                             //Iniciar la Pantalla del formulario
                             } catch (JSONException e) {
                                 e.printStackTrace();
@@ -461,5 +468,21 @@ public class MainActivity extends AppCompatActivity {
         }
         return super.onKeyDown(keyCode, event);
     }//Cerrar la aplicacion
+
+    //Configuracion carrucel
+    public void flipperImages(int image){
+        ImageView imageView = new ImageView(this);
+        imageView.setBackgroundResource(image);
+
+        v_flipper.addView(imageView);
+        v_flipper.setFlipInterval(3000);//duracionde cada imagen
+        v_flipper.setAutoStart(true);
+
+        //activacion de animacion
+        v_flipper.setInAnimation(this, android.R.anim.slide_out_right);
+        v_flipper.setInAnimation(this, android.R.anim.slide_in_left);
+        //activacion de animacion
+
+    }//Configuracion carrucel
 
 }
