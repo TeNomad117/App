@@ -1,16 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".FSicapam" >
-
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#243C25">
-
+    tools:context=".FSicapam"
+    android:background="@color/purple_500">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -18,20 +13,20 @@
             android:orientation="vertical">
 
 
-            <ImageView
-                android:id="@+id/imageView5"
-                android:layout_width="match_parent"
-                android:layout_height="110dp"
-                app:srcCompat="@drawable/gobmexico" />
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="20dp"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="20dp"
                 android:layout_marginRight="20dp"
                 android:background="@drawable/acercade"
                 android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/imageView5"
+                    android:layout_width="match_parent"
+                    android:layout_height="110dp"
+                    app:srcCompat="@drawable/gobmexico" />
 
                 <TextView
                     android:id="@+id/textView12"
@@ -39,23 +34,49 @@
                     android:layout_height="match_parent"
                     android:text="CUALQUIER DUDA FAVOR DE COMUNICARSE A LA EXT. 1821, 7819 Y 6249"
                     android:textAlignment="center"
-                    android:textColor="#000000" />
+                    android:textColor="#262E5E"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:text="CON EL LIC. CARLOS MANUEL HEREDIA ACOSTA"
                     android:textAlignment="center"
-                    android:textColor="#000000"></TextView>
+                    android:textColor="#262E5E"
+                    android:textStyle="bold"></TextView>
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:text="Correo: digacap.subsima@semar.gob.mx"
                     android:textAlignment="center"
-                    android:textColor="#000000"></TextView>
+                    android:textColor="#262E5E"
+                    android:textStyle="bold"></TextView>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:textAlignment="center"
+                    android:textColor="#262E5E"
+                    android:textStyle="bold"></TextView>
+
+                <ViewFlipper
+                    android:id="@+id/flipper"
+                    android:layout_width="match_parent"
+                    android:layout_height="500dp" >
+                </ViewFlipper>
+
+                <ImageView
+                    android:id="@+id/imageView3"
+                    android:layout_width="1000dp"
+                    android:layout_height="84dp"
+                    android:adjustViewBounds="true"
+                    android:cropToPadding="false"
+                    android:scaleType="centerCrop"
+                    android:visibility="visible"
+                    app:srcCompat="@drawable/footer" />
+
             </LinearLayout>
         </LinearLayout>
-    </ScrollView>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>

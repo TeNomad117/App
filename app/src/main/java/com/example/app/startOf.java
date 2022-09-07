@@ -34,8 +34,8 @@ public class startOf extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent intentAn = new Intent(startOf.this, MainActivity.class);
-                startActivity(intentAn);
+                //Intent intentAn = new Intent(startOf.this, MainActivity.class);
+                //startActivity(intentAn);
                 finish();
             }
         }, 4000);

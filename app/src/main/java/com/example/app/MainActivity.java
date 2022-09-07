@@ -14,6 +14,7 @@ import android.util.Base64;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -45,6 +46,8 @@ public class MainActivity extends AppCompatActivity {
     Button btn_Scan;
     Button button;
     ImageView sinConexion;
+    ImageView decrypt;
+    ImageView live;
     ViewFlipper v_flipper;
 
 
@@ -61,16 +64,11 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         //carrucel imagenes
-        int images[] = {R.drawable.b1,R.drawable.b2,R.drawable.b3,R.drawable.b4,R.drawable.b5,
-        R.drawable.b6,R.drawable.b7,R.drawable.b8,R.drawable.b9,R.drawable.b10,};
-
+        int images[] = {R.drawable.b1,R.drawable.b2,R.drawable.b3,R.drawable.b4,R.drawable.b5,R.drawable.b7,R.drawable.b8,R.drawable.b9,R.drawable.b10,};
         v_flipper = findViewById(R.id.v_flipper);
-
         for(int image: images){
             flipperImages(image);
-        }
-
-        //carrucel imagenes
+        }//carrucel imagenes
 
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
 
@@ -79,6 +77,10 @@ public class MainActivity extends AppCompatActivity {
         btn_Scan = findViewById(R.id.btn_scan); //boton escaneo
         sinConexion = findViewById(R.id.imagenSinConexion); //imagen para identificar la conexion
         sinConexion.setVisibility(View.INVISIBLE); //se oculta la imagen
+        decrypt = findViewById(R.id.desencrip);
+        //live = findViewById(R.id.online);
+        //live.setVisibility(View.INVISIBLE);
+        //v_flipper.setVisibility(View.INVISIBLE);
 
         //Boton flotante acerca de:
         FloatingActionButton fab = findViewById(R.id.fab);
@@ -88,17 +90,19 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(MainActivity.this, FormPrueba.class);
                 startActivity(intent);
             }
-        });
-        //Boton flotante acerca de:
+        });//Boton flotante acerca de:
 
         //Validacion de conexion a internet
         ConnectivityManager con = (ConnectivityManager) getSystemService(CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = con.getActiveNetworkInfo();
         if(networkInfo!=null && networkInfo.isConnected()){
             FancyToast.makeText(MainActivity.this,"Conectado !",FancyToast.LENGTH_LONG,FancyToast.SUCCESS,false).show();//R.drawable.icon(Permite agregar un icono al mensaje)
+            //live.setVisibility(View.VISIBLE);
         }else {
             sinConexion.setVisibility(View.VISIBLE);
             btn_Scan.setEnabled(false);
+            v_flipper.setEnabled(false);
+            v_flipper.setFlipInterval(1000000000);
             FancyToast.makeText(this,"No Conectado !",FancyToast.LENGTH_LONG,FancyToast.ERROR,false).show();
         }//Validacion de conexion a internet
 
@@ -161,8 +165,6 @@ public class MainActivity extends AppCompatActivity {
                         @Override
                         public void onResponse(JSONObject response) {
                             try {
-                                //System.out.println(response);
-                                //JSONObject jwtRequest = response.getJSONObject()
                                 _jwt= response.getString("jwt");
                                 System.out.println("------>" + _jwt);
                             } catch (Exception e) {
@@ -180,12 +182,6 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
             myQueue.add(request);
-            /*{@Override
-                public Map () getHeaders() throws AuthFailureError {
-                HashMap headers = new HashMap();
-                headers.put
-            }*/
-           // };
             /**
              *
              */
@@ -209,7 +205,6 @@ public class MainActivity extends AppCompatActivity {
                 FancyToast.makeText(MainActivity.this,"Escaneo Cancelado",FancyToast.LENGTH_LONG,FancyToast.CONFUSING,false).show();
             }else {
                 FancyToast.makeText(this, result.getContents(), Toast.LENGTH_LONG).show();
-                //txt_Resultado.setText(result.getContents());
                 getQrVersion(result.getContents());
             }
         }else{
@@ -239,7 +234,6 @@ public class MainActivity extends AppCompatActivity {
             return false;
         }
         return false;
-        //System.out.println("URL envio " + url);
     }
 
     //visualizacion de la informacion Botton
@@ -266,10 +260,12 @@ public class MainActivity extends AppCompatActivity {
 
                                 switch (idSistema) {
                                     case 11:
-                                        FancyToast.makeText(MainActivity.this,"Sitema SICAPAM",FancyToast.LENGTH_LONG,FancyToast.SUCCESS,true).show();
+                                        decrypt.setVisibility(View.VISIBLE);
+                                        //FancyToast.makeText(MainActivity.this,"Sitema SICAPAM",FancyToast.LENGTH_LONG,FancyToast.SUCCESS,true).show();
                                         break;
                                     case 13:
-                                        FancyToast.makeText(MainActivity.this,"Sistema SIGEM",FancyToast.LENGTH_LONG,FancyToast.SUCCESS,true).show();
+                                        decrypt.setVisibility(View.VISIBLE);
+                                        //FancyToast.makeText(MainActivity.this,"Sistema SIGEM",FancyToast.LENGTH_LONG,FancyToast.SUCCESS,true).show();
                                         break;
                                     default: /*Mostrar mensaje de error o sistema no indicado*/
                                         FancyToast.makeText(MainActivity.this,"Error! Sistema No Encontrado",FancyToast.LENGTH_LONG,FancyToast.ERROR,true).show();
@@ -332,24 +328,25 @@ public class MainActivity extends AppCompatActivity {
                     }, new Response.ErrorListener() {
                 @Override
                 public void onErrorResponse(VolleyError error) {
-                    System.out.println("Error durante la peticion");
-                    System.out.println("Error durante la peticion :: " + error.getLocalizedMessage());
-                    //System.out.println("Error durante la peticion :: " + error.getMessage());System.out.println("Error durante la peticion :: " + error.networkResponse.statusCode);
-                    error.printStackTrace();
-
+                    error.getLocalizedMessage();
+                    error.getMessage();
+                    error.getCause();
+                    //FancyToast.makeText(MainActivity.this,"Error! 401",FancyToast.LENGTH_LONG,FancyToast.ERROR,true).show();
                 }
-            }) {
-                @Override
-                public Map<String, String> getHeaders() throws AuthFailureError {
-                    HashMap headers = new HashMap<String, String>();
-                    headers.put("Authorization", _jwt);
-                    return headers;
-                }
+            })
+            {
+//                @Override
+//                public Map<String, String> getHeaders() throws AuthFailureError {
+//                    HashMap headers = new HashMap<String, String>();
+//                    headers.put("Authorization", _jwt);
+//                    return headers;
+//                }
             };
             myQueue.add(request);
         } catch (Exception ex) {
             /*Mostrar mensaje de error en la pantalla*/
             ex.printStackTrace();
+            //FancyToast.makeText(MainActivity.this,"Error! Durante la peticion!!",FancyToast.LENGTH_LONG,FancyToast.ERROR,true).show();
             System.out.println("Error durante la peticion");
             System.out.println("Error durante la peticion" + ex.getLocalizedMessage());
             System.out.println("Error durante la peticion" + ex.getMessage());
@@ -429,7 +426,7 @@ public class MainActivity extends AppCompatActivity {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-
+                        FancyToast.makeText(MainActivity.this,"Error! 404",FancyToast.LENGTH_LONG,FancyToast.ERROR,true).show();
                     }
                 })
         {
